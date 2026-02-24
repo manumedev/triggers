@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "RulesListViewModel")
+private let logger = Logger(subsystem: "com.triggers.app", category: "RulesListViewModel")
 
 @MainActor
 @Observable

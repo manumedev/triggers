@@ -4,7 +4,7 @@ import NetworkExtension
 import SystemConfiguration.CaptiveNetwork
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "WiFiMonitorService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "WiFiMonitorService")
 
 private let kLastConnectedKey = "wifi_lastConnected"
 private let kLastSSIDKey = "wifi_lastSSID"
@@ -22,7 +22,7 @@ final class WiFiMonitorService: ObservableObject {
     var onSSIDEvent: ((String?, Bool) -> Void)?
 
     private let monitor = NWPathMonitor(requiredInterfaceType: .wifi)
-    private let monitorQueue = DispatchQueue(label: "com.remindme.wifi", qos: .utility)
+    private let monitorQueue = DispatchQueue(label: "com.triggers.wifi", qos: .utility)
 
     // In-memory SSID state for deduplication within a session
     private var sessionSSID: String? = nil
@@ -61,9 +61,25 @@ final class WiFiMonitorService: ObservableObject {
     }
 
     private func handleNetworkChange(connected: Bool, ssid: String?) {
-        // Skip transient nil-SSID connected events (occurs briefly during network handoff)
         if connected && ssid == nil {
-            FileLogger.shared.log("Skipping transient nil-SSID connect", category: "WiFi")
+            if baselineRecorded {
+                // Active session: nil SSID is transient during handoff — skip
+                FileLogger.shared.log("Skipping transient nil-SSID (active session)", category: "WiFi")
+            } else {
+                // Startup: SSID not ready yet — retry after 1.5s so we catch the real SSID
+                // before the app potentially goes back to sleep
+                FileLogger.shared.log("Startup nil-SSID — scheduling retry in 1.5s", category: "WiFi")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+                    guard let self, !self.baselineRecorded else { return }
+                    NEHotspotNetwork.fetchCurrent { [weak self] network in
+                        let ssid = network?.ssid
+                        FileLogger.shared.log("Startup retry SSID=\(ssid ?? "nil")", category: "WiFi")
+                        Task { @MainActor [weak self] in
+                            self?.handleNetworkChange(connected: true, ssid: ssid)
+                        }
+                    }
+                }
+            }
             return
         }
 

@@ -17,7 +17,7 @@ struct HomeView: View {
                     rulesList
                 }
             }
-            .navigationTitle("RemindMe")
+            .navigationTitle("Triggers")
             .searchable(text: $viewModel.searchText, prompt: "Search rules")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

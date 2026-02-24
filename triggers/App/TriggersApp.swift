@@ -4,7 +4,7 @@ import UserNotifications
 import Darwin
 
 @main
-struct RemindMeApp: App {
+struct TriggersApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
@@ -41,16 +41,18 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 
-    /// Called by iOS on background fetch wakeup — NWPathMonitor will re-evaluate and fire
-    /// events if WiFi state changed while the app was suspended (via UserDefaults comparison).
+    /// Called by iOS on background fetch — explicitly check WiFi state in case NWPathMonitor
+    /// hasn't fired yet, then wait for it to complete before calling completionHandler.
     func application(
         _ application: UIApplication,
         performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
         FileLogger.shared.log("Background fetch wakeup", category: "Startup")
-        // WiFiMonitorService.startMonitoring() runs on init — it will detect any WiFi change
-        // against the persisted last-known state and fire onSSIDEvent automatically.
-        completionHandler(.newData)
+        // Give NWPathMonitor + NEHotspotNetwork time to settle, then call completion
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            FileLogger.shared.log("Background fetch completing", category: "Startup")
+            completionHandler(.newData)
+        }
     }
 }
 

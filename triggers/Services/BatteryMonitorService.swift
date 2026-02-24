@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "BatteryMonitorService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "BatteryMonitorService")
 
 @MainActor
 final class BatteryMonitorService: ObservableObject {

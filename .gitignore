@@ -15,4 +15,4 @@ build/
 
 # Logs
 *.log
-remindme.log
+triggers.log

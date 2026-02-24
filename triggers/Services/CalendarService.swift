@@ -2,7 +2,7 @@ import Foundation
 import EventKit
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "CalendarService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "CalendarService")
 
 @MainActor
 final class CalendarService: ObservableObject {

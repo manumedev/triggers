@@ -1,13 +1,13 @@
 import Foundation
 
-/// Writes timestamped log lines to Documents/remindme.log.
-/// Accessible via Files app → On My iPhone → RemindMe → remindme.log
+/// Writes timestamped log lines to Documents/triggers.log.
+/// Accessible via Files app → On My iPhone → Triggers → triggers.log
 /// Thread-safe: can be called from any queue or actor.
 final class FileLogger: @unchecked Sendable {
 
     static let shared = FileLogger()
 
-    private let queue = DispatchQueue(label: "com.remindme.filelog", qos: .background)
+    private let queue = DispatchQueue(label: "com.triggers.filelog", qos: .background)
     private let fileURL: URL
     private let dateFormatter: DateFormatter
 
@@ -15,7 +15,7 @@ final class FileLogger: @unchecked Sendable {
 
     private init() {
         let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        fileURL = docs.appendingPathComponent("remindme.log")
+        fileURL = docs.appendingPathComponent("triggers.log")
         dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss.SSS"
         // Tag the main dispatch queue so we can detect it from any thread
@@ -65,7 +65,7 @@ final class FileLogger: @unchecked Sendable {
         let attrs = try? FileManager.default.attributesOfItem(atPath: fileURL.path)
         if let size = attrs?[.size] as? Int, size > 2_000_000 {
             let archiveURL = fileURL.deletingLastPathComponent()
-                .appendingPathComponent("remindme-prev.log")
+                .appendingPathComponent("triggers-prev.log")
             try? FileManager.default.removeItem(at: archiveURL)
             try? FileManager.default.moveItem(at: fileURL, to: archiveURL)
         }

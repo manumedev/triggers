@@ -50,7 +50,8 @@ enum TriggerType: String, Codable, CaseIterable, Identifiable {
     /// Others are preserved in the model for future implementation.
     var isAvailable: Bool {
         switch self {
-        case .locationArrive, .locationLeave, .wifiConnect, .wifiDisconnect:
+        case .locationArrive, .locationLeave, .wifiConnect, .wifiDisconnect,
+             .bluetoothConnect, .bluetoothDisconnect:
             return true
         default:
             return false

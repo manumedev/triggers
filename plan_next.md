@@ -1,4 +1,4 @@
-# RemindMe — Next Trigger Types to Implement
+# Triggers — Next Trigger Types to Implement
 
 WiFi and Location are live. Each section below is one self-contained implementation sprint.
 Add `isAvailable: Bool { return true }` to the trigger cases in `TriggerType.swift` when done.

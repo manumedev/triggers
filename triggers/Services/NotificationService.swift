@@ -2,7 +2,7 @@ import Foundation
 import UserNotifications
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "NotificationService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "NotificationService")
 
 @MainActor
 final class NotificationService {

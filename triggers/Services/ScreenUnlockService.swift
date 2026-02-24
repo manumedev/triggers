@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "ScreenUnlockService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "ScreenUnlockService")
 
 @MainActor
 final class ScreenUnlockService: ObservableObject {

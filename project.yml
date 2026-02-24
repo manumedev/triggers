@@ -1,4 +1,4 @@
-name: RemindMe
+name: Triggers
 options:
   bundleIdPrefix: com.manumedev
   deploymentTarget:
@@ -15,19 +15,20 @@ settings:
     CODE_SIGN_STYLE: Automatic
 
 targets:
-  RemindMe:
+  Triggers:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
     sources:
-      - path: RemindMe
+      - path: triggers
     resources:
-      - path: RemindMe/Resources
+      - path: triggers/Resources
     dependencies:
       - sdk: NetworkExtension.framework
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.manumedev.remindme
-        INFOPLIST_FILE: RemindMe/Resources/Info.plist
-        CODE_SIGN_ENTITLEMENTS: RemindMe/Resources/RemindMe.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: com.manumedev.triggers
+        INFOPLIST_FILE: triggers/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: triggers/Resources/Triggers.entitlements
         CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
+        "CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]": triggers/Resources/Triggers-Simulator.entitlements

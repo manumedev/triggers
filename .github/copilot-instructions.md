@@ -1,4 +1,4 @@
-# RemindMe – Copilot Instructions
+# Triggers – Copilot Instructions
 
 ## Build
 
@@ -11,14 +11,14 @@ xcodegen generate
 Build from the command line:
 
 ```bash
-xcodebuild -project RemindMe.xcodeproj -scheme RemindMe -destination 'platform=iOS Simulator,name=iPhone 16' build
+xcodebuild -project triggers.xcodeproj -scheme Triggers -destination 'platform=iOS Simulator,name=iPhone 16' build
 ```
 
 There are no automated tests in this project.
 
 ## Architecture
 
-RemindMe is an iOS 17+ app (Swift 6.0) that fires local notifications when user-defined rule conditions are met.
+Triggers is an iOS 17+ app (Swift 6.0) that fires local notifications when user-defined rule conditions are met.
 
 ### Core data flow
 
@@ -43,7 +43,7 @@ RemindMe is an iOS 17+ app (Swift 6.0) that fires local notifications when user-
 - **JSON encoding for SwiftData arrays/enums** – `Rule.conditions` is stored as `conditionsData: Data` (JSON). Similarly, `repeatBehaviorData: Data` stores `RepeatBehavior`. Always go through the computed property accessors, never touch `*Data` fields directly.
 - **`RepeatBehavior` has manual `Codable`** – it uses an associated value (`cooldown(minutes: Int)`), so it implements `init(from:)` and `encode(to:)` by hand. Follow the same pattern for any new enums with associated values.
 - **All sensor services use closure callbacks** – prefer `onXxxEvent: ((…) -> Void)?` properties rather than delegates or Combine. `RuleEvaluationEngine` is the only consumer.
-- **Logger uses OSLog** – `Logger(subsystem: "com.remindme.app", category: "<ClassName>")` at file scope; use `logger.info/debug/error` (never `print`).
+- **Logger uses OSLog** – `Logger(subsystem: "com.triggers.app", category: "<ClassName>")` at file scope; use `logger.info/debug/error` (never `print`).
 - **`TriggerType.category`** drives grouping in `TriggerPickerView`. When adding a new trigger type, update `displayName`, `systemImage`, and `category` on `TriggerType`, add a case to `TriggerConfig.summary(for:)`, and add a `TriggerConfigView` under `Views/TriggerConfigViews/`.
 - **Geofences are registered via `LocationService.startMonitoring(place:)`** after saving a rule. `RuleBuilderViewModel.refreshGeofences(for:)` handles this after every save.
 - **`isMet` on `Condition` is runtime-only** – it is excluded from `Codable` via `CodingKeys` and must never be persisted.

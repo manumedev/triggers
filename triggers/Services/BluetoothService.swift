@@ -2,7 +2,7 @@ import Foundation
 import CoreBluetooth
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "BluetoothService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "BluetoothService")
 
 @MainActor
 final class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate {

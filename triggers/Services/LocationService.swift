@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "LocationService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "LocationService")
 
 /// Maximum number of simultaneous geofence regions iOS allows.
 let kMaxGeofenceRegions = 20

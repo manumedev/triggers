@@ -3,7 +3,7 @@ import WeatherKit
 import CoreLocation
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "WeatherService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "WeatherService")
 
 @MainActor
 final class WeatherService: ObservableObject {

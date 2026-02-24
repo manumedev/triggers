@@ -2,7 +2,7 @@ import Foundation
 import CoreMotion
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "MotionService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "MotionService")
 
 enum DetectedActivity: Equatable {
     case stationary, walking, running, automotive, cycling, unknown

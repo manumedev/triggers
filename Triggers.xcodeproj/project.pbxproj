@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		025532CE51AD151781B9F100 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F6154D5281DAD50385C171 /* NetworkExtension.framework */; };
+		094AE295BFAA1ADF097C0C43 /* KnownNetworksStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489718FE66DE1D2BF53A3A3D /* KnownNetworksStore.swift */; };
+		0E969C47482485070244F1D1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C6E3D19B2E0177B5CE90D7 /* HomeView.swift */; };
+		10024EF8656DDD998C6E26F6 /* CalendarTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2315DEDAA8B091C766DDA45 /* CalendarTriggerConfigView.swift */; };
+		10BA914E28030F94B7E0232E /* BluetoothTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D447EA24E9DF437C791B248 /* BluetoothTriggerConfigView.swift */; };
+		11ED8648C8D08611423E2C80 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B96B594FCBBE34D1DF1DBC /* Condition.swift */; };
+		1516FA7A97ACCBF85F5D1FB6 /* RuleEvaluationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1674DE15E5160D37F8B47B6 /* RuleEvaluationEngine.swift */; };
+		259C78063888C9DA4CE60B29 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03BDC5DFE628AE4A271704 /* PersistenceService.swift */; };
+		2CE660FF024AACD9B6176D11 /* BatteryTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E666CE9D5E2422AC6974178 /* BatteryTriggerConfigView.swift */; };
+		326EA9B3AFCD7A8DD967FB0E /* PlacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D81E396A5A9F6989DD09219 /* PlacesView.swift */; };
+		501C62E4B24FE828DA03528B /* LocationTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55841C6E03507499D21EA43 /* LocationTriggerConfigView.swift */; };
+		5057D3A1EF31622C339F49B4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82841B19EF91E042F8DD594B /* SettingsView.swift */; };
+		631435124A8C1F0B6B6F08B3 /* WiFiTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF2E158F2C04F10C4A69769 /* WiFiTriggerConfigView.swift */; };
+		638E5B3E77D52B3B8258CED0 /* TriggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDE59E2350E185C894E4CA4 /* TriggerConfig.swift */; };
+		729305B439DFF1E46A960061 /* RuleBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53694425ECD078B5C5ADCCD7 /* RuleBuilderView.swift */; };
+		775CDBB35701CECA0B371A46 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89358516348B0EE724D91B2 /* BluetoothService.swift */; };
+		798077A00D8E1C177129BC5A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90D1906CA21BEAE0E9020B /* NotificationService.swift */; };
+		7C67857C646C002508D78882 /* TriggerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCBF5957D40726B7035629 /* TriggerType.swift */; };
+		7FB6B587B1BE55BA1E0BF3C6 /* RuleBuilderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CF72D9A5337AA5108BC59 /* RuleBuilderViewModel.swift */; };
+		84833600DEA9272EB4014830 /* MapPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF1ACF4490AB5D01E74240 /* MapPickerView.swift */; };
+		93CDE2C580D077C516CC4D47 /* TriggersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7017809D9A873334FF6E0A25 /* TriggersApp.swift */; };
+		95CFF3388F838DF562044A08 /* RulesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091E010056982AAA1BC411A /* RulesListViewModel.swift */; };
+		97318D60C71A615F487D9A50 /* ConditionLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5436F497F2B4CDBEB4B6856 /* ConditionLogic.swift */; };
+		9A1D32DFAB011C677A599F6A /* ConditionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FC983D6DD796CC77D418C2 /* ConditionRowView.swift */; };
+		9F3729E55F1B9B6D79082E19 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDB138C6B331D52535E6E0 /* Rule.swift */; };
+		A19843B30C227FD858534431 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B05D8C09E32B8B99DECF8A7 /* WeatherService.swift */; };
+		A50DDAA0A411DE84C8759270 /* WiFiMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214570439D052D110704928 /* WiFiMonitorService.swift */; };
+		A575435671B82F07846C2962 /* TriggerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4826F868BE7CDB1E5BBEEE /* TriggerPickerView.swift */; };
+		AE576A165697E96DB579D9D6 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8DFED7E2BADE14BF688A49 /* MotionService.swift */; };
+		B09315881BB20193FC9E27E9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B31A66C8BA0644F81F0D8 /* LocationService.swift */; };
+		BBB0B204470B33DE5F4083BA /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B36AD963FBBA5DA1223EF75 /* PlacesViewModel.swift */; };
+		C3E299A1F2C7DF0514C6E51A /* TimeTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9480ABF63C0290087C5845A /* TimeTriggerConfigView.swift */; };
+		C8112DB84A723FFD40C65424 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969FE9C9BED7A12A4AB9A80 /* CalendarService.swift */; };
+		C92CA4FF8C3E3A0EECBB3C00 /* FocusModeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1997EFDAB86D61C861B647 /* FocusModeService.swift */; };
+		D1F1FD3EA2D9C62705892ABD /* FileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4441D6AC4DFC0500D4504 /* FileLogger.swift */; };
+		E021179F6920A430EEF27140 /* SavedPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A6C1CFEB8CA6AEBCBC50BD /* SavedPlace.swift */; };
+		E1816854E8C6B3F60F0F0E34 /* BatteryMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6070EAAE23885E304C648 /* BatteryMonitorService.swift */; };
+		E7C1BE4AA4D228A887BD1B2E /* ScreenUnlockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F7452D58D667C61806389 /* ScreenUnlockService.swift */; };
+		E9D5C11B29D3829DC43C200A /* WeatherTriggerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B55AA041074B0665D01FB /* WeatherTriggerConfigView.swift */; };
+		EA1D0C62D3335BF32D7A8E41 /* RepeatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE27238843D84BD03584A2 /* RepeatBehavior.swift */; };
+		ECEAD44F6D193C3B64F065F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B160648AEE38D6DFC1680E1A /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0D81E396A5A9F6989DD09219 /* PlacesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesView.swift; sourceTree = "<group>"; };
+		1BA716381782E161D932F770 /* Triggers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Triggers.entitlements; sourceTree = "<group>"; };
+		2B05D8C09E32B8B99DECF8A7 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		2E666CE9D5E2422AC6974178 /* BatteryTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryTriggerConfigView.swift; sourceTree = "<group>"; };
+		2FDE59E2350E185C894E4CA4 /* TriggerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerConfig.swift; sourceTree = "<group>"; };
+		3214570439D052D110704928 /* WiFiMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiMonitorService.swift; sourceTree = "<group>"; };
+		34FC983D6DD796CC77D418C2 /* ConditionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionRowView.swift; sourceTree = "<group>"; };
+		3B03BDC5DFE628AE4A271704 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		44CDB138C6B331D52535E6E0 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		489718FE66DE1D2BF53A3A3D /* KnownNetworksStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownNetworksStore.swift; sourceTree = "<group>"; };
+		4B36AD963FBBA5DA1223EF75 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
+		53694425ECD078B5C5ADCCD7 /* RuleBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleBuilderView.swift; sourceTree = "<group>"; };
+		5A8B55AA041074B0665D01FB /* WeatherTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTriggerConfigView.swift; sourceTree = "<group>"; };
+		5D447EA24E9DF437C791B248 /* BluetoothTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTriggerConfigView.swift; sourceTree = "<group>"; };
+		6B4D2684972F2682D407C2D6 /* Triggers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triggers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CCCBF5957D40726B7035629 /* TriggerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerType.swift; sourceTree = "<group>"; };
+		6D4826F868BE7CDB1E5BBEEE /* TriggerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerPickerView.swift; sourceTree = "<group>"; };
+		7017809D9A873334FF6E0A25 /* TriggersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggersApp.swift; sourceTree = "<group>"; };
+		7091E010056982AAA1BC411A /* RulesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesListViewModel.swift; sourceTree = "<group>"; };
+		80A6C1CFEB8CA6AEBCBC50BD /* SavedPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlace.swift; sourceTree = "<group>"; };
+		82841B19EF91E042F8DD594B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		83A4441D6AC4DFC0500D4504 /* FileLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLogger.swift; sourceTree = "<group>"; };
+		8D6B31A66C8BA0644F81F0D8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		8F8DFED7E2BADE14BF688A49 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
+		A25CF72D9A5337AA5108BC59 /* RuleBuilderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleBuilderViewModel.swift; sourceTree = "<group>"; };
+		A512978605C4B240166E08E6 /* Triggers-Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Triggers-Simulator.entitlements"; sourceTree = "<group>"; };
+		A55841C6E03507499D21EA43 /* LocationTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTriggerConfigView.swift; sourceTree = "<group>"; };
+		AFF2E158F2C04F10C4A69769 /* WiFiTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiTriggerConfigView.swift; sourceTree = "<group>"; };
+		B160648AEE38D6DFC1680E1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B2315DEDAA8B091C766DDA45 /* CalendarTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTriggerConfigView.swift; sourceTree = "<group>"; };
+		B2C6E3D19B2E0177B5CE90D7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B5F6070EAAE23885E304C648 /* BatteryMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitorService.swift; sourceTree = "<group>"; };
+		B969FE9C9BED7A12A4AB9A80 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		C3B96B594FCBBE34D1DF1DBC /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
+		C9480ABF63C0290087C5845A /* TimeTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTriggerConfigView.swift; sourceTree = "<group>"; };
+		D1674DE15E5160D37F8B47B6 /* RuleEvaluationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEvaluationEngine.swift; sourceTree = "<group>"; };
+		D89358516348B0EE724D91B2 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		DD90D1906CA21BEAE0E9020B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		E81F7452D58D667C61806389 /* ScreenUnlockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUnlockService.swift; sourceTree = "<group>"; };
+		EAFE27238843D84BD03584A2 /* RepeatBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatBehavior.swift; sourceTree = "<group>"; };
+		EE1997EFDAB86D61C861B647 /* FocusModeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModeService.swift; sourceTree = "<group>"; };
+		F4DF1ACF4490AB5D01E74240 /* MapPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPickerView.swift; sourceTree = "<group>"; };
+		F5436F497F2B4CDBEB4B6856 /* ConditionLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionLogic.swift; sourceTree = "<group>"; };
+		F7F6154D5281DAD50385C171 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		F997DEF69742995484E530E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		99036FF626991E33CF913DD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				025532CE51AD151781B9F100 /* NetworkExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04E89AB310FAF4D9E7038875 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6B4D2684972F2682D407C2D6 /* Triggers.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		226EFF70DAF0D943CC37B2B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B160648AEE38D6DFC1680E1A /* Assets.xcassets */,
+				F997DEF69742995484E530E1 /* Info.plist */,
+				A512978605C4B240166E08E6 /* Triggers-Simulator.entitlements */,
+				1BA716381782E161D932F770 /* Triggers.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2E849772BF601CDF13979F62 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7017809D9A873334FF6E0A25 /* TriggersApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		33D39ABD974C0921862E89E6 = {
+			isa = PBXGroup;
+			children = (
+				C5791E4AD8AF625E60844886 /* triggers */,
+				5280524817148E270C1ABEE2 /* Frameworks */,
+				04E89AB310FAF4D9E7038875 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E6CC05EBABE698145C8F588 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B5F6070EAAE23885E304C648 /* BatteryMonitorService.swift */,
+				D89358516348B0EE724D91B2 /* BluetoothService.swift */,
+				B969FE9C9BED7A12A4AB9A80 /* CalendarService.swift */,
+				83A4441D6AC4DFC0500D4504 /* FileLogger.swift */,
+				EE1997EFDAB86D61C861B647 /* FocusModeService.swift */,
+				489718FE66DE1D2BF53A3A3D /* KnownNetworksStore.swift */,
+				8D6B31A66C8BA0644F81F0D8 /* LocationService.swift */,
+				8F8DFED7E2BADE14BF688A49 /* MotionService.swift */,
+				DD90D1906CA21BEAE0E9020B /* NotificationService.swift */,
+				3B03BDC5DFE628AE4A271704 /* PersistenceService.swift */,
+				D1674DE15E5160D37F8B47B6 /* RuleEvaluationEngine.swift */,
+				E81F7452D58D667C61806389 /* ScreenUnlockService.swift */,
+				2B05D8C09E32B8B99DECF8A7 /* WeatherService.swift */,
+				3214570439D052D110704928 /* WiFiMonitorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5280524817148E270C1ABEE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7F6154D5281DAD50385C171 /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		883B721D2CD9BC1A5DD79A8C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C3B96B594FCBBE34D1DF1DBC /* Condition.swift */,
+				F5436F497F2B4CDBEB4B6856 /* ConditionLogic.swift */,
+				EAFE27238843D84BD03584A2 /* RepeatBehavior.swift */,
+				44CDB138C6B331D52535E6E0 /* Rule.swift */,
+				80A6C1CFEB8CA6AEBCBC50BD /* SavedPlace.swift */,
+				2FDE59E2350E185C894E4CA4 /* TriggerConfig.swift */,
+				6CCCBF5957D40726B7035629 /* TriggerType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E524EC67D1B56517780E4B6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B36AD963FBBA5DA1223EF75 /* PlacesViewModel.swift */,
+				A25CF72D9A5337AA5108BC59 /* RuleBuilderViewModel.swift */,
+				7091E010056982AAA1BC411A /* RulesListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B5A9C1DD3E21B141068C2C75 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				34FC983D6DD796CC77D418C2 /* ConditionRowView.swift */,
+				B2C6E3D19B2E0177B5CE90D7 /* HomeView.swift */,
+				F4DF1ACF4490AB5D01E74240 /* MapPickerView.swift */,
+				0D81E396A5A9F6989DD09219 /* PlacesView.swift */,
+				53694425ECD078B5C5ADCCD7 /* RuleBuilderView.swift */,
+				82841B19EF91E042F8DD594B /* SettingsView.swift */,
+				6D4826F868BE7CDB1E5BBEEE /* TriggerPickerView.swift */,
+				BEE976804381792969F35A7A /* TriggerConfigViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEE976804381792969F35A7A /* TriggerConfigViews */ = {
+			isa = PBXGroup;
+			children = (
+				2E666CE9D5E2422AC6974178 /* BatteryTriggerConfigView.swift */,
+				5D447EA24E9DF437C791B248 /* BluetoothTriggerConfigView.swift */,
+				B2315DEDAA8B091C766DDA45 /* CalendarTriggerConfigView.swift */,
+				A55841C6E03507499D21EA43 /* LocationTriggerConfigView.swift */,
+				C9480ABF63C0290087C5845A /* TimeTriggerConfigView.swift */,
+				5A8B55AA041074B0665D01FB /* WeatherTriggerConfigView.swift */,
+				AFF2E158F2C04F10C4A69769 /* WiFiTriggerConfigView.swift */,
+			);
+			path = TriggerConfigViews;
+			sourceTree = "<group>";
+		};
+		C5791E4AD8AF625E60844886 /* triggers */ = {
+			isa = PBXGroup;
+			children = (
+				2E849772BF601CDF13979F62 /* App */,
+				883B721D2CD9BC1A5DD79A8C /* Models */,
+				226EFF70DAF0D943CC37B2B0 /* Resources */,
+				3E6CC05EBABE698145C8F588 /* Services */,
+				8E524EC67D1B56517780E4B6 /* ViewModels */,
+				B5A9C1DD3E21B141068C2C75 /* Views */,
+			);
+			path = triggers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6CDDDB16E0F48BDCE7AB63D7 /* Triggers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43AB2AF8C41946C925871DBE /* Build configuration list for PBXNativeTarget "Triggers" */;
+			buildPhases = (
+				C081DFA17FBB7E8E136BBE0C /* Sources */,
+				161A2F712D94139E8DE2DA6E /* Resources */,
+				99036FF626991E33CF913DD2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Triggers;
+			packageProductDependencies = (
+			);
+			productName = Triggers;
+			productReference = 6B4D2684972F2682D407C2D6 /* Triggers.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		280A9F3B8375451916BFA077 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					6CDDDB16E0F48BDCE7AB63D7 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 03123CB77BE0733B95AA34E7 /* Build configuration list for PBXProject "Triggers" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 33D39ABD974C0921862E89E6;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6CDDDB16E0F48BDCE7AB63D7 /* Triggers */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		161A2F712D94139E8DE2DA6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEAD44F6D193C3B64F065F6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C081DFA17FBB7E8E136BBE0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1816854E8C6B3F60F0F0E34 /* BatteryMonitorService.swift in Sources */,
+				2CE660FF024AACD9B6176D11 /* BatteryTriggerConfigView.swift in Sources */,
+				775CDBB35701CECA0B371A46 /* BluetoothService.swift in Sources */,
+				10BA914E28030F94B7E0232E /* BluetoothTriggerConfigView.swift in Sources */,
+				C8112DB84A723FFD40C65424 /* CalendarService.swift in Sources */,
+				10024EF8656DDD998C6E26F6 /* CalendarTriggerConfigView.swift in Sources */,
+				11ED8648C8D08611423E2C80 /* Condition.swift in Sources */,
+				97318D60C71A615F487D9A50 /* ConditionLogic.swift in Sources */,
+				9A1D32DFAB011C677A599F6A /* ConditionRowView.swift in Sources */,
+				D1F1FD3EA2D9C62705892ABD /* FileLogger.swift in Sources */,
+				C92CA4FF8C3E3A0EECBB3C00 /* FocusModeService.swift in Sources */,
+				0E969C47482485070244F1D1 /* HomeView.swift in Sources */,
+				094AE295BFAA1ADF097C0C43 /* KnownNetworksStore.swift in Sources */,
+				B09315881BB20193FC9E27E9 /* LocationService.swift in Sources */,
+				501C62E4B24FE828DA03528B /* LocationTriggerConfigView.swift in Sources */,
+				84833600DEA9272EB4014830 /* MapPickerView.swift in Sources */,
+				AE576A165697E96DB579D9D6 /* MotionService.swift in Sources */,
+				798077A00D8E1C177129BC5A /* NotificationService.swift in Sources */,
+				259C78063888C9DA4CE60B29 /* PersistenceService.swift in Sources */,
+				326EA9B3AFCD7A8DD967FB0E /* PlacesView.swift in Sources */,
+				BBB0B204470B33DE5F4083BA /* PlacesViewModel.swift in Sources */,
+				EA1D0C62D3335BF32D7A8E41 /* RepeatBehavior.swift in Sources */,
+				9F3729E55F1B9B6D79082E19 /* Rule.swift in Sources */,
+				729305B439DFF1E46A960061 /* RuleBuilderView.swift in Sources */,
+				7FB6B587B1BE55BA1E0BF3C6 /* RuleBuilderViewModel.swift in Sources */,
+				1516FA7A97ACCBF85F5D1FB6 /* RuleEvaluationEngine.swift in Sources */,
+				95CFF3388F838DF562044A08 /* RulesListViewModel.swift in Sources */,
+				E021179F6920A430EEF27140 /* SavedPlace.swift in Sources */,
+				E7C1BE4AA4D228A887BD1B2E /* ScreenUnlockService.swift in Sources */,
+				5057D3A1EF31622C339F49B4 /* SettingsView.swift in Sources */,
+				C3E299A1F2C7DF0514C6E51A /* TimeTriggerConfigView.swift in Sources */,
+				638E5B3E77D52B3B8258CED0 /* TriggerConfig.swift in Sources */,
+				A575435671B82F07846C2962 /* TriggerPickerView.swift in Sources */,
+				7C67857C646C002508D78882 /* TriggerType.swift in Sources */,
+				93CDE2C580D077C516CC4D47 /* TriggersApp.swift in Sources */,
+				A19843B30C227FD858534431 /* WeatherService.swift in Sources */,
+				E9D5C11B29D3829DC43C200A /* WeatherTriggerConfigView.swift in Sources */,
+				A50DDAA0A411DE84C8759270 /* WiFiMonitorService.swift in Sources */,
+				631435124A8C1F0B6B6F08B3 /* WiFiTriggerConfigView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0E6FDE65915650FF85EDC03C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		52AE03CF11DFADDDD8F5FAE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		ED0D2E2A66E08D8B2DB9044B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = triggers/Resources/Triggers.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "triggers/Resources/Triggers-Simulator.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2LQWYK4M2Y;
+				INFOPLIST_FILE = triggers/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manumedev.triggers;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F28FA942059F4F76FA60241D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = triggers/Resources/Triggers.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "triggers/Resources/Triggers-Simulator.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2LQWYK4M2Y;
+				INFOPLIST_FILE = triggers/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manumedev.triggers;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03123CB77BE0733B95AA34E7 /* Build configuration list for PBXProject "Triggers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52AE03CF11DFADDDD8F5FAE7 /* Debug */,
+				0E6FDE65915650FF85EDC03C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		43AB2AF8C41946C925871DBE /* Build configuration list for PBXNativeTarget "Triggers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0D2E2A66E08D8B2DB9044B /* Debug */,
+				F28FA942059F4F76FA60241D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 280A9F3B8375451916BFA077 /* Project object */;
+}

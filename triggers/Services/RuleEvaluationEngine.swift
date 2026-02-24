@@ -3,9 +3,9 @@ import SwiftData
 import CoreLocation
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "RuleEvaluationEngine")
+private let logger = Logger(subsystem: "com.triggers.app", category: "RuleEvaluationEngine")
 
-/// Evaluates WiFi and Location rules and fires notifications when conditions are met.
+/// Evaluates WiFi, Location, and Bluetooth rules and fires notifications when conditions are met.
 @MainActor
 final class RuleEvaluationEngine: ObservableObject {
 
@@ -13,9 +13,24 @@ final class RuleEvaluationEngine: ObservableObject {
 
     private weak var modelContext: ModelContext?
 
-    private let location = LocationService.shared
-    private let wifi     = WiFiMonitorService.shared
-    private let notify   = NotificationService.shared
+    private let location  = LocationService.shared
+    private let wifi      = WiFiMonitorService.shared
+    private let bluetooth = BluetoothService.shared
+    private let notify    = NotificationService.shared
+
+    /// Guards against duplicate fires when the same event is delivered multiple times
+    /// (e.g. CLLocationManager re-delivering boundary events, NWPathMonitor oscillation).
+    private var recentFires: [UUID: Date] = [:]
+    private let dedupWindow: TimeInterval = 10
+
+    private func shouldFire(rule: Rule) -> Bool {
+        if let last = recentFires[rule.id], Date().timeIntervalSince(last) < dedupWindow {
+            FileLogger.shared.log("  '\(rule.name)': dedup skip (\(Int(Date().timeIntervalSince(last)))s ago)", category: "Eval")
+            return false
+        }
+        recentFires[rule.id] = Date()
+        return true
+    }
 
     private init() {}
 
@@ -39,6 +54,9 @@ final class RuleEvaluationEngine: ObservableObject {
         wifi.onSSIDEvent = { [weak self] ssid, isConnected in
             self?.handleWiFiEvent(ssid: ssid, isConnected: isConnected)
         }
+        bluetooth.onDeviceEvent = { [weak self] deviceName, isConnected in
+            self?.handleBluetoothEvent(deviceName: deviceName, isConnected: isConnected)
+        }
     }
 
     // MARK: - Event handlers
@@ -59,6 +77,14 @@ final class RuleEvaluationEngine: ObservableObject {
         evaluateWiFi(ssid: ssid, triggerType: type)
     }
 
+    private func handleBluetoothEvent(deviceName: String, isConnected: Bool) {
+        let type: TriggerType = isConnected ? .bluetoothConnect : .bluetoothDisconnect
+        let msg = "Bluetooth event: \(type.rawValue), device=\(deviceName)"
+        logger.info("\(msg)")
+        FileLogger.shared.log(msg, category: "Bluetooth")
+        evaluateBluetooth(deviceName: deviceName, triggerType: type)
+    }
+
     // MARK: - Evaluation
 
     private func evaluateLocation(regionId: String, triggerType: TriggerType) {
@@ -74,7 +100,7 @@ final class RuleEvaluationEngine: ObservableObject {
                 cond.type == triggerType && cond.config.placeId?.uuidString == regionId
             }
             FileLogger.shared.log("  '\(rule.name)': fired=\(fired)", category: "Eval")
-            if fired { Task { await notify.fire(rule: rule) } }
+            if fired && shouldFire(rule: rule) { Task { await notify.fire(rule: rule) } }
         }
     }
 
@@ -108,7 +134,34 @@ final class RuleEvaluationEngine: ObservableObject {
             }
             logger.info("  '\(rule.name)': fired=\(fired)")
             FileLogger.shared.log("  '\(rule.name)': fired=\(fired)", category: "Eval")
-            if fired { Task { await notify.fire(rule: rule) } }
+            if fired && shouldFire(rule: rule) { Task { await notify.fire(rule: rule) } }
+        }
+    }
+
+    private func evaluateBluetooth(deviceName: String, triggerType: TriggerType) {
+        guard let context = modelContext else { return }
+        let rules = fetchEnabledRules(from: context)
+        let evalMsg = "Eval Bluetooth \(triggerType.rawValue) device='\(deviceName)': \(rules.count) rules"
+        logger.info("\(evalMsg)")
+        FileLogger.shared.log(evalMsg, category: "Eval")
+        for rule in rules {
+            guard rule.canFire() else {
+                FileLogger.shared.log("  '\(rule.name)': skipped (canFire=false)", category: "Eval")
+                continue
+            }
+            let fired = evaluateRule(rule, eventType: triggerType) { cond in
+                guard cond.type == triggerType else { return false }
+                // nil device name in config = match any device
+                if let configured = cond.config.bluetoothDeviceName {
+                    let match = configured == deviceName
+                    FileLogger.shared.log("    cond \(cond.type.rawValue) configured='\(configured)' event='\(deviceName)' match=\(match)", category: "Eval")
+                    return match
+                }
+                return true
+            }
+            logger.info("  '\(rule.name)': fired=\(fired)")
+            FileLogger.shared.log("  '\(rule.name)': fired=\(fired)", category: "Eval")
+            if fired && shouldFire(rule: rule) { Task { await notify.fire(rule: rule) } }
         }
     }
 
@@ -148,6 +201,14 @@ final class RuleEvaluationEngine: ObservableObject {
             let connected = ssid != nil || wifi.isConnectedToWiFi
             if let configured = condition.config.wifiSSID { return !connected || ssid != configured }
             return !connected
+        case .bluetoothConnect:
+            let name = condition.config.bluetoothDeviceName
+            if let name { return bluetooth.connectedPeripheralNames.contains(name) }
+            return !bluetooth.connectedPeripheralNames.isEmpty
+        case .bluetoothDisconnect:
+            let name = condition.config.bluetoothDeviceName
+            if let name { return !bluetooth.connectedPeripheralNames.contains(name) }
+            return bluetooth.connectedPeripheralNames.isEmpty
         default:
             return false
         }

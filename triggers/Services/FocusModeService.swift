@@ -3,7 +3,7 @@ import UIKit
 import UserNotifications
 import OSLog
 
-private let logger = Logger(subsystem: "com.remindme.app", category: "FocusModeService")
+private let logger = Logger(subsystem: "com.triggers.app", category: "FocusModeService")
 
 @MainActor
 final class FocusModeService: ObservableObject {
