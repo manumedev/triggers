@@ -7,9 +7,9 @@ struct WiFiTriggerConfigView: View {
     let onAdd: () -> Void
     @Environment(\.dismiss) private var dismiss
 
-    @State private var ssid: String = ""
+    @State private var value: String = ""
 
-    private var suggestions: [String] {
+    private var networks: [String] {
         var list: [String] = []
         if let current = WiFiMonitorService.shared.currentSSID {
             list.append(current)
@@ -22,36 +22,40 @@ struct WiFiTriggerConfigView: View {
 
     var body: some View {
         Form {
-            if !suggestions.isEmpty {
-                Section("Known Networks") {
-                    ForEach(suggestions, id: \.self) { name in
+            // Network list
+            if !networks.isEmpty {
+                Section {
+                    ForEach(networks, id: \.self) { name in
                         Button {
-                            ssid = name
+                            value = name
                         } label: {
                             HStack {
                                 Label(name, systemImage: "wifi")
                                     .foregroundStyle(.primary)
                                 Spacer()
-                                if ssid == name {
-                                    Image(systemName: "checkmark").foregroundStyle(Color.accentColor)
+                                if value == name {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(Color.accentColor)
                                 }
                             }
                         }
                         .buttonStyle(.plain)
                     }
+                } header: {
+                    Text(type == .wifiConnect ? "Connect to Network" : "Disconnect from Network")
+                } footer: {
+                    Text("iOS doesn't expose nearby network scanning. Only your current and previously used networks appear here.")
+                        .font(.caption)
                 }
             }
 
+            // Manual entry fallback
             Section {
-                TextField("Network name (SSID)", text: $ssid)
+                TextField("Network name (SSID)", text: $value)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
             } header: {
-                Text(type == .wifiConnect ? "Connect to WiFi" : "Disconnect from WiFi")
-            } footer: {
-                Text(suggestions.isEmpty
-                     ? "Connect to a WiFi network first to see it suggested here."
-                     : "Select a network above or type a name manually.")
+                Text(networks.isEmpty ? "Network name (SSID)" : "Or enter name manually")
             }
         }
         .navigationTitle(type.displayName)
@@ -62,13 +66,13 @@ struct WiFiTriggerConfigView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Add") {
-                    let trimmed = ssid.trimmingCharacters(in: .whitespaces)
+                    let trimmed = value.trimmingCharacters(in: .whitespaces)
                     config.wifiSSID = trimmed
                     KnownNetworksStore.shared.addWifi(trimmed)
                     onAdd()
                 }
                 .fontWeight(.semibold)
-                .disabled(ssid.trimmingCharacters(in: .whitespaces).isEmpty)
+                .disabled(value.trimmingCharacters(in: .whitespaces).isEmpty)
             }
         }
     }
