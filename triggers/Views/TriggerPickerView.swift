@@ -12,7 +12,7 @@ struct TriggerPickerView: View {
     }
 
     private var sortedCategories: [String] {
-        ["Location", "Network"]
+        ["Location", "Network", "Bluetooth"]
     }
 
     var body: some View {
