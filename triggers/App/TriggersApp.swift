@@ -37,18 +37,29 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             _ = await NotificationService.shared.requestAuthorization()
             LocationService.shared.requestAlwaysAuthorization()
         }
+
+        // Check WiFi state whenever the app comes to the foreground, to catch
+        // any connect/disconnect that happened while the app was suspended.
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didBecomeActiveNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            WiFiMonitorService.shared.checkAndFireIfChanged()
+        }
+
         FileLogger.shared.log("AppDelegate: ready", category: "Startup")
         return true
     }
 
-    /// Called by iOS on background fetch — explicitly check WiFi state in case NWPathMonitor
-    /// hasn't fired yet, then wait for it to complete before calling completionHandler.
+    /// Called by iOS on background fetch — check WiFi state to catch changes
+    /// that occurred while the app was suspended (NWPathMonitor doesn't fire then).
     func application(
         _ application: UIApplication,
         performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
         FileLogger.shared.log("Background fetch wakeup", category: "Startup")
-        // Give NWPathMonitor + NEHotspotNetwork time to settle, then call completion
+        WiFiMonitorService.shared.checkAndFireIfChanged()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             FileLogger.shared.log("Background fetch completing", category: "Startup")
             completionHandler(.newData)
