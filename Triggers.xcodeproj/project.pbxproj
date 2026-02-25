@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -65,7 +65,7 @@
 		53694425ECD078B5C5ADCCD7 /* RuleBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleBuilderView.swift; sourceTree = "<group>"; };
 		5A8B55AA041074B0665D01FB /* WeatherTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTriggerConfigView.swift; sourceTree = "<group>"; };
 		5D447EA24E9DF437C791B248 /* BluetoothTriggerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTriggerConfigView.swift; sourceTree = "<group>"; };
-		6B4D2684972F2682D407C2D6 /* Triggers.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Triggers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B4D2684972F2682D407C2D6 /* Triggers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triggers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCCBF5957D40726B7035629 /* TriggerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerType.swift; sourceTree = "<group>"; };
 		6D4826F868BE7CDB1E5BBEEE /* TriggerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerPickerView.swift; sourceTree = "<group>"; };
 		7017809D9A873334FF6E0A25 /* TriggersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggersApp.swift; sourceTree = "<group>"; };
@@ -273,7 +273,6 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					6CDDDB16E0F48BDCE7AB63D7 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -288,7 +287,6 @@
 			);
 			mainGroup = 33D39ABD974C0921862E89E6;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -493,6 +491,7 @@
 				CODE_SIGN_ENTITLEMENTS = triggers/Resources/Triggers.entitlements;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "triggers/Resources/Triggers-Simulator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2LQWYK4M2Y;
 				INFOPLIST_FILE = triggers/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -501,7 +500,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.manumedev.triggers;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -513,6 +516,7 @@
 				CODE_SIGN_ENTITLEMENTS = triggers/Resources/Triggers.entitlements;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "triggers/Resources/Triggers-Simulator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2LQWYK4M2Y;
 				INFOPLIST_FILE = triggers/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -521,7 +525,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.manumedev.triggers;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

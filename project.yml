@@ -21,6 +21,7 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
+    destinations: [iPhone]
     sources:
       - path: triggers
     resources:

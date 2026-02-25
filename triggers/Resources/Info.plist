@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Triggers</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -12,8 +14,6 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundleDisplayName</key>
-	<string>Triggers</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
@@ -29,13 +29,13 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>mindit reads your calendar to fire reminders before upcoming events.</string>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>mindit reads your WiFi network name to fire reminders when you connect to or leave specific networks.</string>
+	<string>Triggers reads your WiFi network name to fire reminders when you connect to or leave specific networks.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>mindit needs your location at all times to fire reminders when you arrive at or leave places.</string>
+	<string>Triggers needs your location at all times to fire reminders when you arrive at or leave places.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>mindit needs your location to set up geofence reminders.</string>
+	<string>Triggers needs your location to set up geofence reminders.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>mindit uses motion data to detect activities like driving or walking for activity-based reminders.</string>
+	<string>Triggers uses motion data to detect activities like driving or walking for activity-based reminders.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
