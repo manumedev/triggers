@@ -172,18 +172,22 @@ final class RuleEvaluationEngine: ObservableObject {
         eventType: TriggerType,
         matchCondition: (Condition) -> Bool
     ) -> Bool {
-        var conditions = rule.conditions
+        let conditions = rule.conditions
         guard !conditions.isEmpty else { return false }
 
-        for i in conditions.indices {
-            if matchCondition(conditions[i]) { conditions[i].isMet = true }
-        }
+        // If no condition is relevant to this event (by type AND parameters), don't fire.
+        // This prevents a WiFi event from triggering a Location/Bluetooth rule, and prevents
+        // a WiFi event for "XYZ" from triggering a rule configured for "ABC".
+        guard conditions.contains(where: { matchCondition($0) }) else { return false }
 
         switch rule.conditionLogic {
-        case .and:
-            return conditions.allSatisfy { $0.isMet || isConditionCurrentlyMet($0) }
         case .or:
-            return conditions.contains { matchCondition($0) }
+            // Guard above already confirmed at least one condition matches.
+            return true
+        case .and:
+            // The current event satisfies at least one condition (verified by guard).
+            // All remaining conditions must also be currently satisfied.
+            return conditions.allSatisfy { matchCondition($0) || isConditionCurrentlyMet($0) }
         }
     }
 
@@ -191,13 +195,12 @@ final class RuleEvaluationEngine: ObservableObject {
     private func isConditionCurrentlyMet(_ condition: Condition) -> Bool {
         switch condition.type {
         case .wifiConnect:
-            // Read SSID synchronously at evaluation time — avoids timing race with NWPathMonitor
-            let ssid = WiFiMonitorService.currentSSIDSync()
+            let ssid = wifi.currentSSID
             let connected = ssid != nil || wifi.isConnectedToWiFi
             if let configured = condition.config.wifiSSID { return connected && configured == ssid }
             return connected
         case .wifiDisconnect:
-            let ssid = WiFiMonitorService.currentSSIDSync()
+            let ssid = wifi.currentSSID
             let connected = ssid != nil || wifi.isConnectedToWiFi
             if let configured = condition.config.wifiSSID { return !connected || ssid != configured }
             return !connected

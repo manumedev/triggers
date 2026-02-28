@@ -45,7 +45,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             object: nil,
             queue: .main
         ) { _ in
-            WiFiMonitorService.shared.checkAndFireIfChanged()
+            Task { @MainActor in
+                WiFiMonitorService.shared.checkAndFireIfChanged()
+            }
         }
 
         FileLogger.shared.log("AppDelegate: ready", category: "Startup")

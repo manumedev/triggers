@@ -1,7 +1,7 @@
 import Foundation
 import Network
+import NetworkExtension
 import SystemConfiguration
-import SystemConfiguration.CaptiveNetwork
 import OSLog
 
 private let logger = Logger(subsystem: "com.triggers.app", category: "WiFiMonitorService")
@@ -32,13 +32,21 @@ final class WiFiMonitorService: ObservableObject {
 
     private func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
-            // Read SSID synchronously on the monitor queue — no async hop, no race condition.
             let connected = path.status == .satisfied
-            let ssid = connected ? WiFiMonitorService.readSSID() : nil
-            let msg = "NWPathMonitor: connected=\(connected) ssid=\(ssid ?? "nil")"
-            FileLogger.shared.log(msg, category: "WiFi")
-            Task { @MainActor [weak self] in
-                self?.handleNetworkChange(connected: connected, ssid: ssid)
+            FileLogger.shared.log("NWPathMonitor: connected=\(connected)", category: "WiFi")
+            if connected {
+                // CNCopyCurrentNetworkInfo is dead on iOS 17+ — use NEHotspotNetwork.fetchCurrent
+                NEHotspotNetwork.fetchCurrent { network in
+                    let ssid = network?.ssid
+                    FileLogger.shared.log("fetchCurrent → ssid=\(ssid ?? "nil")", category: "WiFi")
+                    Task { @MainActor [weak self] in
+                        self?.handleNetworkChange(connected: true, ssid: ssid)
+                    }
+                }
+            } else {
+                Task { @MainActor [weak self] in
+                    self?.handleNetworkChange(connected: false, ssid: nil)
+                }
             }
         }
         monitor.start(queue: monitorQueue)
@@ -94,14 +102,22 @@ final class WiFiMonitorService: ObservableObject {
     /// Call on every app wakeup (becomeActive, background fetch) to catch changes
     /// that occurred while the app was suspended and NWPathMonitor wasn't running.
     func checkAndFireIfChanged() {
-        let connected = WiFiMonitorService.readSSID() != nil || isWiFiReachable()
-        let ssid = connected ? WiFiMonitorService.readSSID() : nil
-        FileLogger.shared.log("checkAndFireIfChanged: connected=\(connected) ssid=\(ssid ?? "nil")", category: "WiFi")
-        handleNetworkChange(connected: connected, ssid: ssid)
+        let reachable = isWiFiReachable()
+        FileLogger.shared.log("checkAndFireIfChanged: reachable=\(reachable)", category: "WiFi")
+        if reachable {
+            NEHotspotNetwork.fetchCurrent { [weak self] network in
+                let ssid = network?.ssid
+                FileLogger.shared.log("checkAndFire fetchCurrent → ssid=\(ssid ?? "nil")", category: "WiFi")
+                Task { @MainActor [weak self] in
+                    self?.handleNetworkChange(connected: true, ssid: ssid)
+                }
+            }
+        } else {
+            handleNetworkChange(connected: false, ssid: nil)
+        }
     }
 
     private func isWiFiReachable() -> Bool {
-        // Fast reachability check without SSID requirement
         var address = sockaddr_in()
         address.sin_len    = UInt8(MemoryLayout<sockaddr_in>.size)
         address.sin_family = sa_family_t(AF_INET)
@@ -114,23 +130,5 @@ final class WiFiMonitorService: ObservableObject {
         SCNetworkReachabilityGetFlags(reachability, &flags)
         return flags.contains(.reachable) && !flags.contains(.isWWAN)
     }
-
-    // MARK: - Synchronous SSID read
-
-    /// Reads the current WiFi SSID synchronously.
-    /// Requires `com.apple.developer.networking.wifi-info` entitlement + location authorization.
-    /// Returns nil if not connected or if entitlement/auth is missing.
-    nonisolated static func readSSID() -> String? {
-        guard let interfaces = CNCopySupportedInterfaces() as? [String] else { return nil }
-        for iface in interfaces {
-            if let info = CNCopyCurrentNetworkInfo(iface as CFString) as? [String: Any],
-               let ssid = info[kCNNetworkInfoKeySSID as String] as? String {
-                return ssid
-            }
-        }
-        return nil
-    }
-
-    /// Alias kept for callers that used the old name.
-    nonisolated static func currentSSIDSync() -> String? { readSSID() }
 }
+
